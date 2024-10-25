@@ -12,7 +12,7 @@ const reviewSchema = new Schema({
 const doctorSchema = new Schema({
   name: { type: String, required: false, default: "" },
   username: { type: String, required: true, unique: true },
-  experience: { type: Number, required: false, default: "" },
+  experience: { type: String, required: false, default: "" },
   workplace: { type: String, required: false, default: "" },
   doctor: { type: Boolean, required: true, default: true },
   email: {

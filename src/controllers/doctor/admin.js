@@ -71,10 +71,14 @@ const getDoctorProfile = asyncHandler(async(req,res)=>{
 
 const updateDoctorProfile = asyncHandler(async(req,res)=>{
   const updates = req.body;
-  const userData = req.user;
-  const doctorId = userData.username;
+  const doctorId = req.userID;
+  console.log(req.body, doctorId.toString())
   try {
-    const updatedDoctor = await Doctor.findOneAndUpdate({ _id: doctorId }, updates, { new: true });
+    const updatedDoctor = await Doctor.updateOne({ _id: doctorId.toString() }, {$set:{name:updates.name, 
+      specialization: updates.specialization,
+      workplace:updates.workplace,
+      experience: updates.experience
+    }});
     if (!updatedDoctor) {
       return res.status(404).json({ message: "Doctor not found" });
     }
