@@ -1,0 +1,17 @@
+services:
+  backend:
+    build: .
+    ports:
+      - 3000:3000
+    depends_on:
+      - mongodb
+  mongodb: # mongodb container name will be used as the host name in the config.js file
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    volumes: # volume is used to persist the data even if the container is stopped
+      - mongodb_data:/data/db
+
+#volumes def
+volumes:
+  mongodb_data: # mongodb_data volume name will be used in the docker-compose.yml file

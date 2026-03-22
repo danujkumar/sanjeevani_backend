@@ -1,13 +1,17 @@
+// SlowBuffer was removed in Node 21+; jsonwebtoken's deps still expect it.
+const buffer = require('buffer');
+if (!buffer.SlowBuffer) buffer.SlowBuffer = buffer.Buffer;
+
 const express = require('express');
 const {connectToDb, getDb} = require('./src/configuration/config')
 const port = process.env.PORT || 3000;
 const app = express();
 const cookieParser=require("cookie-parser")
-const userRouter=require("../sanjeevani_backend/src/routes/patient/user.js");
-const doctorRouter=require("../sanjeevani_backend/src/routes/doctor/admin.js");
+const userRouter=require("./src/routes/patient/user.js");
+const doctorRouter=require("./src/routes/doctor/admin.js");
 const cors = require('cors');
 //db connection
-const {notFound,errorHandler}=require("../sanjeevani_backend/src/middleware/apierror.js")
+const {notFound,errorHandler}=require("./src/middleware/apierror.js")
 let db
 connectToDb((err)=>{
     if(!err) {
