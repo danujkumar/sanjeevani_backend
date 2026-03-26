@@ -10,7 +10,7 @@ const AppointmentP = require("../../models/connection/appointments.js");
 const Review = require("../../models/connection/reviews.js");
 const bcrypt = require("bcrypt");
 
-const authUserv2 = asyncHandler(async (req, res) => {
+const authUser = asyncHandler(async (req, res) => {
   try {
     const { username, password } = req.body;
     const user = await User.findOne({ username });
